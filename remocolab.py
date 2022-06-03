@@ -370,7 +370,7 @@ def _setupVNC():
   my_apt.installDebPackage("virtualgl.deb")
   my_apt.installDebPackage("turbovnc.deb")
 
-  my_apt.installPkg("libpangox", "libgtkglext1")
+  my_apt.installPkg("libpangox-1.0-0", "libgtkglext1")
   my_apt.installDebPackage("anydesk.deb")
 
   my_apt.installPkg("xfce4", "xfce4-terminal")
