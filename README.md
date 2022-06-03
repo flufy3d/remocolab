@@ -3,7 +3,7 @@ remocolab is a Python module to allow remote access to [Google Colaboratory](htt
 It also install [VirtualGL](https://www.virtualgl.org/) so that you can run OpenGL programs on a Google Colaboratory machine and see the screen on VNC client.
 It secures TurboVNC connection using SSH port forwarding.
 
-- [FAQ](https://github.com/demotomohiro/remocolab/wiki/Frequently-Asked-Questions)
+- [FAQ](https://github.com/flufy3d/remocolab/wiki/Frequently-Asked-Questions)
 
 ## How to access SSH server running in colab?
 ~~**ngrok currently doesn't work!**~~ ngrok works now
@@ -26,7 +26,7 @@ Which service works faster can depend on where/when you are.
 - You can use [Google Colaboratory](https://colab.research.google.com/)
   - That means you need Google acount and a browser that is supported by Google Colaboratory.
 - SSH client
-  - [How to get SSH client on Windows](https://github.com/demotomohiro/remocolab/wiki/Frequently-Asked-Questions#how-to-get-ssh-client-on-windows)
+  - [How to get SSH client on Windows](https://github.com/flufy3d/remocolab/wiki/Frequently-Asked-Questions#how-to-get-ssh-client-on-windows)
 - (Optional) [TurboVNC Viewer](https://sourceforge.net/projects/turbovnc/files/) if you use it.
 
 If you use ngrok:
@@ -49,14 +49,14 @@ If you use Argo Tunnel:
    - add `tunnel = "ngrok"` if you use ngrok.
 - SSH only:
 ```python3
-!pip install git+https://github.com/demotomohiro/remocolab.git
+!pip install git+https://github.com/flufy3d/remocolab.git
 import remocolab
 remocolab.setupSSHD()
 ```
 
 - SSH and TurboVNC:
 ```python3
-!pip install git+https://github.com/demotomohiro/remocolab.git
+!pip install git+https://github.com/flufy3d/remocolab.git
 import remocolab
 remocolab.setupVNC()
 ```
