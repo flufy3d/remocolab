@@ -374,6 +374,7 @@ def _setupVNC():
   my_apt.installDebPackage("anydesk.deb")
 
   my_apt.installPkg("xfce4", "xfce4-terminal")
+  my_apt.installPkg("firefox")
   my_apt.commit()
   my_apt.close()
 
