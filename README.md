@@ -142,4 +142,7 @@ with open("/root/.ssh/authorized_keys", 'w') as f:
 ```
 And replace user name colab in ssh command to root.
 
+## install Anydesk
+
+
 
