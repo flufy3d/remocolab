@@ -353,18 +353,23 @@ def _setupVNC():
   libjpeg_ver = "2.0.5"
   virtualGL_ver = "2.6.4"
   turboVNC_ver = "2.2.5"
+  anydesk_ver = "6.1.1"
 
   libjpeg_url = "https://github.com/demotomohiro/turbovnc/releases/download/2.2.5/libjpeg-turbo-official_{0}_amd64.deb".format(libjpeg_ver)
   virtualGL_url = "https://github.com/demotomohiro/turbovnc/releases/download/2.2.5/virtualgl_{0}_amd64.deb".format(virtualGL_ver)
   turboVNC_url = "https://github.com/demotomohiro/turbovnc/releases/download/2.2.5/turbovnc_{0}_amd64.deb".format(turboVNC_ver)
+  anydesk_url = "https://download.anydesk.com/linux/anydesk_{0}-1_amd64.deb".format(anydesk_ver)
 
   _download(libjpeg_url, "libjpeg-turbo.deb")
   _download(virtualGL_url, "virtualgl.deb")
   _download(turboVNC_url, "turbovnc.deb")
+  _download(anydesk_url, "anydesk.deb")
+  
   my_apt = _MyApt()
   my_apt.installDebPackage("libjpeg-turbo.deb")
   my_apt.installDebPackage("virtualgl.deb")
   my_apt.installDebPackage("turbovnc.deb")
+  my_apt.installDebPackage("anydesk.deb")
 
   my_apt.installPkg("xfce4", "xfce4-terminal")
   my_apt.commit()
