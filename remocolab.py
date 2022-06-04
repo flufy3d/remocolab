@@ -454,7 +454,7 @@ sudo -u colab echo {anydesk_passwd} | sudo -S anydesk --set-password
 
   subprocess.run(["bash", "-c", content])
 
-  r = subprocess.run(["bash", "-c","sudo -u colab anydesk --get-id && echo"], stdout = subprocess.PIPE, universal_newlines = True)
+  r = subprocess.run(["bash", "-c","sudo -u colab anydesk --get-id"], stdout = subprocess.PIPE, universal_newlines = True)
   anydesk_id = r.stdout.strip().split("\n")[-1]
 
   msg += "✂️"*24
