@@ -446,7 +446,7 @@ DISPLAY=:1 sudo -u colab xhost +
 
 DISPLAY=:1 nohup sudo anydesk --service&
 
-sleep 2
+sleep 6
 
 sudo -u colab echo {0} | sudo -S anydesk --set-password
 
