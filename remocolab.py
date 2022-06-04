@@ -462,7 +462,6 @@ sudo -u colab echo {0} | sudo -S anydesk --set-password
   msg += "AnyDesk ID: {}".format(anydesk_id) + "\n"
   msg += "AnyDesk password: {}".format(anydesk_passwd) + "\n"
   msg += "✂️"*24 + "\n"
-  msg += content
 
   return msg
 
