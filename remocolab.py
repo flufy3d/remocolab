@@ -1,3 +1,6 @@
+import pwd
+import grp
+import os
 import apt, apt.debfile
 import pathlib, stat, shutil, urllib.request, subprocess, getpass, time, tempfile
 import secrets, json, re
@@ -479,5 +482,15 @@ def setupVNC(ngrok_region = None, check_gpu_available = True, tunnel = None, mou
     time.sleep(10)
     msg += _setupAnyDesk()
     msg += _setupSys()
+
+  log_file = "/home/colab/remocolab.log"
+  uid = pwd.getpwnam("colab").pw_uid
+  gid = grp.getgrnam("colab").gr_gid
+
+
+  with open(log_file, "w+") as f:
+    f.write(msg)
+    
+  os.chown(log_file, uid, gid)
 
   print(msg)
