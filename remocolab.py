@@ -425,7 +425,7 @@ subprocess.run(
                     universal_newlines = True)
   return r.stdout
 
-def SetupAnyDesk()
+def _setupAnyDesk()
   msg = ""
   subprocess.run(["bash", "-c", "echo 2| sudo -S update-alternatives --config x-terminal-emulator"])
   anydesk_passwd = secrets.token_urlsafe()[:8]
@@ -468,6 +468,6 @@ def setupVNC(ngrok_region = None, check_gpu_available = True, tunnel = None, mou
   stat, msg = _setupSSHDMain(public_key, tunnel, ngrok_region, check_gpu_available, mount_gdrive_to, mount_gdrive_from, True)
   if stat:
     msg += _setupVNC()
-    msg += SetupAnyDesk()
+    msg += _setupAnyDesk()
 
   print(msg)
