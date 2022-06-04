@@ -425,9 +425,49 @@ subprocess.run(
                     universal_newlines = True)
   return r.stdout
 
+def _setupAnyDesk()
+  msg = ""
+  subprocess.run(["bash", "-c", "echo 2| sudo -S update-alternatives --config x-terminal-emulator"])
+  anydesk_passwd = secrets.token_urlsafe()[:8]
+  content = """
+user_path=/home/colab
+
+cd $user_path
+
+if [ -f .anydesk/user.conf ]; then
+   sudo -u colab rm .anydesk/user.conf
+fi
+
+sudo -u colab mkdir -p .anydesk
+sudo -u colab touch  .anydesk/user.conf
+sudo -u colab echo -e "ad.security.allow_logon_token=true\nad.features.unattended=true" >>  .anydesk/user.conf
+
+DISPLAY=:1 sudo -u colab xhost + 
+
+DISPLAY=:1 nohup sudo anydesk --service&
+
+sleep 2
+
+sudo -u colab echo {anydesk_passwd} | sudo -S anydesk --set-password
+
+  """
+
+  subprocess.run(["bash", "-c", content])
+
+  r = subprocess.run(["bash", "-c","sudo -u colab anydesk --get-id && echo"], stdout = subprocess.PIPE, universal_newlines = True)
+  anydesk_id = r.stdout.strip().split("\n")[-1]
+
+  msg += "✂️"*24
+  msg += "AnyDesk ID: {}".format(anydesk_id)
+  msg += "AnyDesk password: {}".format(anydesk_passwd)
+  msg += "✂️"*24
+
+  return msg
+
 def setupVNC(ngrok_region = None, check_gpu_available = True, tunnel = None, mount_gdrive_to = None, mount_gdrive_from = None, public_key = None):
   stat, msg = _setupSSHDMain(public_key, tunnel, ngrok_region, check_gpu_available, mount_gdrive_to, mount_gdrive_from, True)
   if stat:
     msg += _setupVNC()
+    msg += _setupAnyDesk()
 
   print(msg)
