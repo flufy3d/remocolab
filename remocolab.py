@@ -425,9 +425,13 @@ subprocess.run(
                     universal_newlines = True)
   return r.stdout
 
-def _setupAnyDesk():
+def _setupSys():
   msg = ""
   subprocess.run(["bash", "-c", "echo 2| sudo -S update-alternatives --config x-terminal-emulator"])
+  return msg
+
+def _setupAnyDesk():
+  msg = ""
   anydesk_passwd = secrets.token_urlsafe()[:8]
   content = """
 user_path=/home/colab
@@ -444,10 +448,11 @@ sudo -u colab echo -e "ad.security.allow_logon_token=true\nad.features.unattende
 
 DISPLAY=:1 sudo -u colab xhost + 
 
-sleep 2
-
 DISPLAY=:1 nohup sudo anydesk --service&
-
+sleep 4
+DISPLAY=:1 nohup sudo anydesk --tray&
+sleep 4
+DISPLAY=:1 nohup sudo anydesk --backend&
 sleep 4
 
 sudo -u colab echo {0} | sudo -S anydesk --set-password
@@ -472,5 +477,6 @@ def setupVNC(ngrok_region = None, check_gpu_available = True, tunnel = None, mou
   if stat:
     msg += _setupVNC()
     msg += _setupAnyDesk()
+    msg += _setupSys()
 
   print(msg)
