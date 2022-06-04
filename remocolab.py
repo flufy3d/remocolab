@@ -448,9 +448,10 @@ DISPLAY=:1 nohup sudo anydesk --service&
 
 sleep 2
 
-sudo -u colab echo {anydesk_passwd} | sudo -S anydesk --set-password
+sudo -u colab echo {0} | sudo -S anydesk --set-password
 
   """
+  content = content.format(anydesk_passwd)
 
   subprocess.run(["bash", "-c", content])
 
