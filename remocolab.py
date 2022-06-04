@@ -425,7 +425,7 @@ subprocess.run(
                     universal_newlines = True)
   return r.stdout
 
-def _setupAnyDesk()
+def _setupAnyDesk():
   msg = ""
   subprocess.run(["bash", "-c", "echo 2| sudo -S update-alternatives --config x-terminal-emulator"])
   anydesk_passwd = secrets.token_urlsafe()[:8]
