@@ -449,11 +449,7 @@ sudo -u colab echo -e "ad.security.allow_logon_token=true\nad.features.unattende
 DISPLAY=:1 sudo -u colab xhost + 
 
 DISPLAY=:1 nohup sudo anydesk --service > service.out 2>&1 &
-sleep 4
-DISPLAY=:1 nohup sudo anydesk --tray > tray.out 2>&1 &
-sleep 4
-DISPLAY=:1 nohup sudo anydesk --backend > backend.out 2>&1 &
-sleep 4
+sleep 5
 
 sudo -u colab echo {0} | sudo -S anydesk --set-password
 
@@ -476,6 +472,7 @@ def setupVNC(ngrok_region = None, check_gpu_available = True, tunnel = None, mou
   stat, msg = _setupSSHDMain(public_key, tunnel, ngrok_region, check_gpu_available, mount_gdrive_to, mount_gdrive_from, True)
   if stat:
     msg += _setupVNC()
+    time.sleep(10)
     msg += _setupAnyDesk()
     msg += _setupSys()
 
