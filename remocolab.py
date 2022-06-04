@@ -448,11 +448,11 @@ sudo -u colab echo -e "ad.security.allow_logon_token=true\nad.features.unattende
 
 DISPLAY=:1 sudo -u colab xhost + 
 
-DISPLAY=:1 nohup sudo anydesk --service&
+DISPLAY=:1 nohup sudo anydesk --service > service.out 2>&1 &
 sleep 4
-DISPLAY=:1 nohup sudo anydesk --tray&
+DISPLAY=:1 nohup sudo anydesk --tray > tray.out 2>&1 &
 sleep 4
-DISPLAY=:1 nohup sudo anydesk --backend&
+DISPLAY=:1 nohup sudo anydesk --backend > backend.out 2>&1 &
 sleep 4
 
 sudo -u colab echo {0} | sudo -S anydesk --set-password
